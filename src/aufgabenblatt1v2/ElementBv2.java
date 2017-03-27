@@ -6,7 +6,7 @@ public class ElementBv2<T> {
   private ElementBv2<T> prevElement;
   private static int keyCounter = 0;
   private String key;
-  private int pos;
+  private int pos; // TODO POS soll kein int sein?
   private T element;
   
   public ElementBv2() {
