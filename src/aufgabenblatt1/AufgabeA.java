@@ -2,25 +2,26 @@ package aufgabenblatt1;
 
 import java.util.List;
 
+import aufgabenblatt1.ElementB;
+
 public class AufgabeA implements List_Interface {
 
-  public static final int INIT_ARRAY_LENGTH = 16;
-  private Element[] listArray;
+  private ElementB[] listArray;
   int lastArrayIndex;
 
   public AufgabeA() {
-    listArray = new Element[INIT_ARRAY_LENGTH];
+    listArray = new ElementB[INIT_ARRAY_LENGTH];
     lastArrayIndex = listArray.length - 1;
   }
 
   public void increaseArraySize() {
-    Element[] tempArray = new Element[listArray.length * 2];
+    ElementB[] tempArray = new ElementB[listArray.length * 2];
     System.arraycopy(listArray, 0, tempArray, 0, listArray.length);
     listArray = tempArray;
     lastArrayIndex = listArray.length - 1;
   }
 
-  public boolean insert(Element element, int pos) {
+  public boolean insert(ElementB element, int pos) {
     if (pos >= listArray.length || pos < 0) {
       System.out.println("Der angegebene Index liegt nicht innerhalb der Grenzen des Arrays");
       return false;
@@ -40,18 +41,18 @@ public class AufgabeA implements List_Interface {
       System.out.println("Der angegebene Index liegt nicht innerhalb der Grenzen des Arrays");
       return false;
     }
-      for (int i = pos; i < lastArrayIndex; i++) {
-        listArray[i] = listArray[i + 1];
-      }
-      return true;
+    for (int i = pos; i < lastArrayIndex; i++) {
+      listArray[i] = listArray[i + 1];
+    }
+    return true;
   }
 
-  public boolean delete(Element element) {
-      delete(find(element));
-      return true;
+  public boolean delete(ElementB element) {
+    delete(find(element));
+    return true;
   }
 
-  public int find(Element element) {
+  public int find(ElementB element) {
     for (int i = 0; i < listArray.length; i++) {
       if (listArray[i] == element) {
         return i;
@@ -61,7 +62,7 @@ public class AufgabeA implements List_Interface {
     return -1;
   }
 
-  public Element retrieve(int pos) {
+  public ElementB retrieve(int pos) {
     if (pos >= listArray.length || pos < 0) {
       System.out.println("Index liegt nicht innerhalb der Grenzen des Arrays");
       return null;
@@ -69,7 +70,28 @@ public class AufgabeA implements List_Interface {
     return listArray[pos];
   }
 
-  public boolean concat(List<Element> list2) {
-   return true;
+  public boolean concat(List<ElementB> list2) {
+    ElementB[] list2Array = new ElementB[list2.size()];
+    list2.toArray(list2Array);
+    int startPunkt = -1;
+    int i = 0;
+    while (startPunkt == -1 && i < listArray.length) {
+      if (listArray[i] == null) {
+        startPunkt = i;
+        break;
+      }
+      i++;
+      if (i >= listArray.length) {
+        startPunkt = listArray.length;
+        increaseArraySize();
+      }
+    } 
+    while (listArray.length - startPunkt - list2Array.length <= 0) {
+      increaseArraySize();
+    }
+    for (int j = 0; j < list2Array.length; j++) {
+      listArray[j + startPunkt] = list2Array[j];
+    }
+    return true;
   }
 }
