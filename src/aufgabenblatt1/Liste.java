@@ -33,5 +33,16 @@ public class Liste{
     public Element getTail() {
         return tail;
     }
+    
+    public int size(){
+	return size;
+    }
+    
+    public void increaseSize(){
+	size++;
+    }
+    public void decreaseSize(){
+	size--;
+    }
 
 }
