@@ -21,6 +21,12 @@ public class ElementBv2<T> {
     keyCounter++;
   }
   
+  public ElementBv2 (int pos) {
+    this.pos = pos;
+    this.key = "#" + keyCounter;
+    keyCounter++;
+  }
+  
   public String getKey() {
     return key;
   }
