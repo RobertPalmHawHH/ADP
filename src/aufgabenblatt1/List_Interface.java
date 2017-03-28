@@ -1,23 +1,21 @@
 package aufgabenblatt1;
 
-import java.util.List;
-
-import aufgabenblatt1.ElementB;
+import aufgabenblatt1.Element;
 
 public interface List_Interface {
 
     public static final int INIT_ARRAY_LENGTH = 16;
     
-    public boolean insert(ElementB element, int pos);
+    public Element[] insert(Element[] elements, Element element, int pos);
     
-    public boolean delete(int pos);
+    public Element[] delete(Element[] elements, int pos);
     
-    public boolean delete(ElementB element);
+    public Element[] delete(Element[] elements, Key key);
     
-    public int find(ElementB element);
+    public int find(Element[] elements, Key key);
     
-    public ElementB retrieve(int pos);
+    public Element retrieve(Element[] elements, int pos);
     
-    public boolean concat(List<ElementB> list2);
+    public Element[] concat(Element[] list1, Element[] list2);
     
 }
