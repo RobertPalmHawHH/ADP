@@ -93,7 +93,7 @@ public class AufgabeB implements List_Interface {
 	// Durch Liste gehen und zaehlen
 	Element elem = liste.getHead();// get first Element
 	int stepCount = 0;
-	while (pos < stepCount) {
+	while (pos <= stepCount) {
 	    elem = elem.getNextElement();
 	    stepCount++;
 	}
