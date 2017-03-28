@@ -15,6 +15,8 @@ public class Liste{
 	tail = new Element();
 	head.setNextElement(tail);
 	tail.setPrevElement(head);
+	array[0] = tail;
+	array[1] = head;
 	size = 0;
     }
 

@@ -5,16 +5,16 @@ import aufgabenblatt1.Element;
 public interface List_Interface {
 
     
-    public List insert(List list, Element element, int pos);
+    public Liste insert(Liste list, Element element, int pos);
     
-    public List delete(List list, int pos);
+    public Liste delete(Liste list, int pos);
     
-    public List delete(List list, Key key);
+    public Liste delete(Liste list, Key key);
     
-    public int find(List list, Key key);
+    public int find(Liste list, Key key);
     
-    public Element retrieve(List list, int pos);
+    public Element retrieve(Liste list, int pos);
     
-    public List concat(List list, Element[] list2);
+    public Liste concat(Liste list1, Liste list2);
     
 }

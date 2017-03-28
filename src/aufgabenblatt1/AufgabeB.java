@@ -8,7 +8,7 @@ public class AufgabeB implements List_Interface {
 
     private int listSize = 0;
 
-    public Element[] insert(Element[] elements, Element element, int pos) {
+    public Liste insert(Liste elements, Element element, int pos) {
 	// ueberpruefen ob position vorhanden
 	if (pos > listSize) {
 	    throw new IndexOutOfBoundsException();
