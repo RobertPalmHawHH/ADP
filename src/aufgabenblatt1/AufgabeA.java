@@ -2,26 +2,26 @@ package aufgabenblatt1;
 
 import java.util.List;
 
-import aufgabenblatt1.ElementB;
+import aufgabenblatt1.Element;
 
 public class AufgabeA implements List_Interface {
 
-  private ElementB[] listArray;
+  private Element[] listArray;
   int lastArrayIndex;
 
   public AufgabeA() {
-    listArray = new ElementB[INIT_ARRAY_LENGTH];
+    listArray = new Element[INIT_ARRAY_LENGTH];
     lastArrayIndex = listArray.length - 1;
   }
 
   public void increaseArraySize() {
-    ElementB[] tempArray = new ElementB[listArray.length * 2];
+    Element[] tempArray = new Element[listArray.length * 2];
     System.arraycopy(listArray, 0, tempArray, 0, listArray.length);
     listArray = tempArray;
     lastArrayIndex = listArray.length - 1;
   }
 
-  public boolean insert(ElementB element, int pos) {
+  public boolean insert(Element element, int pos) {
     if (pos >= listArray.length || pos < 0) {
       System.out.println("Der angegebene Index liegt nicht innerhalb der Grenzen des Arrays");
       return false;
@@ -47,12 +47,12 @@ public class AufgabeA implements List_Interface {
     return true;
   }
 
-  public boolean delete(ElementB element) {
+  public boolean delete(Element element) {
     delete(find(element));
     return true;
   }
 
-  public int find(ElementB element) {
+  public int find(Element element) {
     for (int i = 0; i < listArray.length; i++) {
       if (listArray[i] == element) {
         return i;
@@ -62,7 +62,7 @@ public class AufgabeA implements List_Interface {
     return -1;
   }
 
-  public ElementB retrieve(int pos) {
+  public Element retrieve(int pos) {
     if (pos >= listArray.length || pos < 0) {
       System.out.println("Index liegt nicht innerhalb der Grenzen des Arrays");
       return null;
@@ -70,8 +70,8 @@ public class AufgabeA implements List_Interface {
     return listArray[pos];
   }
 
-  public boolean concat(List<ElementB> list2) {
-    ElementB[] list2Array = new ElementB[list2.size()];
+  public boolean concat(List<Element> list2) {
+    Element[] list2Array = new Element[list2.size()];
     list2.toArray(list2Array);
     int startPunkt = -1;
     int i = 0;

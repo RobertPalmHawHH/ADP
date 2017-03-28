@@ -1,110 +1,111 @@
 package aufgabenblatt1;
 
-import java.util.List;
 
-import aufgabenblatt1.ElementB;
+
+import aufgabenblatt1.Element;
 
 public class AufgabeB implements List_Interface {
 
-  private ElementB[] array;
+    private int listSize = 0;
 
-  private int listSize = 0;
+    public Element[] insert(Element[] elements, Element element, int pos) {
+	// ueberpruefen ob position vorhanden
+	if (pos > listSize) {
+	    throw new IndexOutOfBoundsException();
+	}
 
-  public AufgabeB() {
-    array = new ElementB[INIT_ARRAY_LENGTH];
-  }
+	// Pruefung ob vergroesserung notwendig
+	if (elements.length == listSize)
+	    increaseArraySize(elements);
 
-  public boolean insert(ElementB element, int pos) {
-    // ueberpruefen ob position vorhanden
-    if (pos > listSize) {
-      throw new IndexOutOfBoundsException();
+	// Element in Array einfuegen
+	for (int i = 0; i < elements.length; i++) {
+	    if (elements[i] == null) {
+		elements[i] = element;
+		break;
+	    }
+	}
+
+	// Element an der jeweiligen Position holen
+	Element elemToReplace = retrieve(elements, pos);
+
+	// ... und neues zwischen diesem und Vordermann quetschen
+	element.setPrevElement(elemToReplace.getPrevElement());
+	element.setNextElement(elemToReplace);
+
+	return elements;
     }
 
-    // Pruefung ob vergroesserung notwendig
-    if (array.length == listSize)
-      increaseArraySize();
+    public Element[] delete(Element[] elements, int pos) {
 
-    // Element in Array einfuegen
-    for (int i = 0; i < array.length; i++) {
-      if (array[i] == null) {
-        array[i] = element;
-        break;
-      }
+	// Element ermitteln und dieses loeschen
+	delete(elements, retrieve(elements, pos).getKey());
+	return elements;
     }
 
-    // Element an der jeweiligen Position holen
-    ElementB elemToReplace = retrieve(pos);
+    public Element[] delete(Element[] elements, Key key) {
 
-    // ... und neues zwischen diesem und Vordermann quetschen
-    element.setPrevElement(elemToReplace.getPrevElement());
-    element.setNextElement(elemToReplace);
+	//find Element
+	int posOfElem = find(elements, key);
+	Element elementToDelete = retrieve(elements, posOfElem);
+	
+	// Element ueberbruecken (Zeiger von Nachbarelementen entfernen)
+	Element previous = elementToDelete.getPrevElement();
+	previous.setNextElement(elementToDelete.getNextElement());
 
-    return true;
-  }
+	// Element aus array loeschen
+	for (int i = 0; i < elements.length; i++) {
+	    if (elements[i].equals(elementToDelete)) {
+		elements[i] = null;
+	    }
+	}
 
-  public boolean delete(int pos) {
-    // Element ermitteln und dieses loeschen
-    delete(retrieve(pos));
-    return true;
-  }
-
-  public boolean delete(ElementB element) {
-
-    // Element ueberbruecken (Zeiger von Nachbarelementen entfernen)
-    ElementB previous = element.getPrevElement();
-    previous.setNextElement(element.getNextElement());
-
-    // Element aus array loeschen
-    for (int i = 0; i < array.length; i++) {
-      if (array[i].equals(element)) {
-        array[i] = null;
-      }
+	return elements;
     }
-    return true;
-  }
 
-  public int find(ElementB element) {
+    public int find(Element[] elements, Key key) {
 
-    int stepCounter = 0;
-    ElementB elem = array[1]; // erstes Element
-
-    // Laufe Liste ab
-    while (elem.getNextElement() != null) {
-      elem = elem.getNextElement();
-      stepCounter++;
-      if (elem == element) {
-        break;
-      }
+	
+	int stepCounter = 0;
+	Element elem = elements[0]; //TODO richtig erstes element finden
+	
+	// Laufe Liste ab
+	while (elem.getNextElement() != null) {
+	    elem = elem.getNextElement();
+	    stepCounter++;
+	    if (elem.getKey() == key) {
+		break;
+	    }
+	}
+	return stepCounter;
     }
-    return stepCounter;
-  }
 
-  public ElementB retrieve(int pos) {
-    // ueberpruefen ob pos vorhanden
-    if (pos > listSize || pos < 0)
-      throw new IndexOutOfBoundsException();
+    public Element retrieve(Element[] elements, int pos) {
+	// ueberpruefen ob pos vorhanden
+	if (pos > listSize || pos < 0)
+	    throw new IndexOutOfBoundsException();
 
-    // Durch Liste gehen und zaehlen
-    ElementB elem = array[1];// get first Element
-    int stepCount = 0;
-    while (pos < stepCount) {
-      elem = elem.getNextElement();
-      stepCount++;
+	// Durch Liste gehen und zaehlen
+	Element elem = elements[1];// get first Element
+	int stepCount = 0;
+	while (pos < stepCount) {
+	    elem = elem.getNextElement();
+	    stepCount++;
+	}
+	return elem;
     }
-    return elem;
-  }
 
-  public boolean concat(List<ElementB> list2) {
-    // TODO Auto-generated method stub
-    return false;
-  }
+    public Element[] concat(Element[] list1, Element[] list2) {
+	// TODO Auto-generated method stub
+	return null;
+    }
 
-  private void increaseArraySize() {
-    // einfach groesse des arrays verdoppeln
-    ElementB[] newArray = new ElementB[array.length * 2];
-    // tiefenkopie machen
-    System.arraycopy(array, 0, newArray, 0, array.length);
-    array = newArray;
-  }
+    private Element[] increaseArraySize(Element[] elements) {
+	// Array mit doppelter groesse erstellen
+	Element[] newArray = new Element[elements.length * 2];
+	// tiefenkopie machen
+	System.arraycopy(elements, 0, newArray, 0, elements.length);
+	return newArray;
+    }
 
 }
