@@ -32,6 +32,7 @@ public class AufgabeAv2<K, E> implements List_Interfacewithkey<K, E> {
     }
   }
   
+  @SuppressWarnings("unchecked")
   public AufgabeAv2() {
     listArray = new KeyElement2[INIT_ARRAY_LENGTH];
   }
@@ -63,32 +64,57 @@ public class AufgabeAv2<K, E> implements List_Interfacewithkey<K, E> {
     if (!posValid(pos)) {
       return listArray;
     }
-    return null;
+    checkSize(1);
+    while (listArray[pos - 1] == null) {
+      pos--;
+    } if (listArray[pos] != null) {
+      moveElements(pos, true);
+    }
+    listArray[pos] = new KeyElement2<K, E>(null, element);
+    elemCounter++;
+    return listArray;
   }
   
-  private void moveElements(int pos, int value) {
+  private void moveElements(int pos, boolean value) {
     if (posValid(pos)) {
-      checkSize(value);
-      if (listArray[pos + value] != null) {
-        moveElements(pos + value, value);
+      if (value == true) {
+      checkSize(1);
+      if (listArray[pos + 1] != null) {
+        moveElements(pos + 1, true);
       }
-      listArray[pos + value] = listArray[pos];
+      listArray[pos + 1] = listArray[pos];
+      } else {
+        for (int i = pos; i < elemCounter; i++) {
+          listArray[i] = listArray[i + 1];
+        }
+      }
     }
   }
+  
   @Override
-  public E[] delete(int pos) {
-    // TODO Auto-generated method stub
-    return null;
+  public KeyElement2<K, E>[] delete(int pos) {
+    if (posValid(pos)) {
+      listArray[pos] = null;
+      moveElements(pos, false);
+    }
+    return listArray;
   }
 
   @Override
-  public E[] delete(String key) {
-    // TODO Auto-generated method stub
-    return null;
+  public KeyElement2<K, E>[] delete(K key) {
+      for (int i= 0; i < listArray.length; i++) {
+        if (listArray[i] != null) {
+          if (listArray[i].getKey() == key) {
+            listArray[i] = null;
+          }
+        }
+      }
+    return listArray;
   }
 
   @Override
   public int find(String key) {
+    
     // TODO Auto-generated method stub
     return 0;
   }

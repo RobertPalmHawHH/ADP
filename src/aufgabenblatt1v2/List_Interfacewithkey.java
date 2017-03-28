@@ -12,7 +12,7 @@ public interface List_Interfacewithkey<K, E> {
     
     public KeyElement2<K, E>[] delete(int pos);
     
-    public KeyElement2<K, E>[] delete(String key);
+    public KeyElement2<K, E>[] delete(K key);
     
     public int find(String key);
     
