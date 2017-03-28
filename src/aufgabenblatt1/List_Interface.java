@@ -4,18 +4,17 @@ import aufgabenblatt1.Element;
 
 public interface List_Interface {
 
-    public static final int INIT_ARRAY_LENGTH = 16;
     
-    public Element[] insert(Element[] elements, Element element, int pos);
+    public List insert(List list, Element element, int pos);
     
-    public Element[] delete(Element[] elements, int pos);
+    public List delete(List list, int pos);
     
-    public Element[] delete(Element[] elements, Key key);
+    public List delete(List list, Key key);
     
-    public int find(Element[] elements, Key key);
+    public int find(List list, Key key);
     
-    public Element retrieve(Element[] elements, int pos);
+    public Element retrieve(List list, int pos);
     
-    public Element[] concat(Element[] list1, Element[] list2);
+    public List concat(List list, Element[] list2);
     
 }
