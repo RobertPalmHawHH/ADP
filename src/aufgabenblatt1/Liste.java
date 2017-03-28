@@ -1,6 +1,5 @@
 package aufgabenblatt1;
 
-<<<<<<< HEAD
 public class Liste{
     
     public static final int INIT_ARRAY_LENGTH = 16;
