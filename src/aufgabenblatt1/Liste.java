@@ -1,32 +1,32 @@
 package aufgabenblatt1;
 
-<<<<<<< HEAD
+
 public class Liste{
     
     public static final int INIT_ARRAY_LENGTH = 16;
     
-    private Element[] array;
+    private Element[] memory;
     private Element head;
     private Element tail;
     private int size;
     
     public Liste(){
-	array = new Element[INIT_ARRAY_LENGTH];
+	memory = new Element[INIT_ARRAY_LENGTH];
 	head = new Element();
 	tail = new Element();
 	head.setNextElement(tail);
 	tail.setPrevElement(head);
-	array[0] = tail;
-	array[1] = head;
+	memory[0] = tail;
+	memory[1] = head;
 	size = 0;
     }
 
-    public Element[] getArray() {
-        return array;
+    public Element[] getMemory() {
+        return memory;
     }
 
-    public void setArray(Element[] array) {
-        this.array = array;
+    public void setMemory(Element[] array) {
+        this.memory = array;
     }
 
     public Element getHead() {

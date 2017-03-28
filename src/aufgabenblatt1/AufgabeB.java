@@ -1,92 +1,97 @@
 package aufgabenblatt1;
 
-
-
 import aufgabenblatt1.Element;
 
 public class AufgabeB implements List_Interface {
 
-    private int listSize = 0;
+    public Liste insert(Liste liste, Element element, int pos) {
 
-    public Liste insert(Liste elements, Element element, int pos) {
+	Element[] memory = liste.getMemory();
 	// ueberpruefen ob position vorhanden
-	if (pos > listSize) {
+	if (pos > memory.length) {
 	    throw new IndexOutOfBoundsException();
 	}
 
 	// Pruefung ob vergroesserung notwendig
-	if (elements.length == listSize)
-	    increaseArraySize(elements);
+	if (liste.size() == memory.length)
+	    increaseArraySize(memory);
 
 	// Element in Array einfuegen
-	for (int i = 0; i < elements.length; i++) {
-	    if (elements[i] == null) {
-		elements[i] = element;
+	for (int i = 0; i < liste.getMemory().length; i++) {
+	    if (memory[i] == null) {
+		memory[i] = element;
 		break;
 	    }
 	}
 
 	// Element an der jeweiligen Position holen
-	Element elemToReplace = retrieve(elements, pos);
+	Element elemToReplace = retrieve(liste, pos);
 
 	// ... und neues zwischen diesem und Vordermann quetschen
 	element.setPrevElement(elemToReplace.getPrevElement());
 	element.setNextElement(elemToReplace);
 
-	return elements;
+	liste.setMemory(memory);
+
+	return liste;
     }
 
-    public Element[] delete(Element[] elements, int pos) {
+    public Liste delete(Liste liste, int pos) {
 
 	// Element ermitteln und dieses loeschen
-	delete(elements, retrieve(elements, pos).getKey());
-	return elements;
+	delete(liste, retrieve(liste, pos).getKey());
+	return liste;
     }
 
-    public Element[] delete(Element[] elements, Key key) {
+    public Liste delete(Liste liste, Key key) {
 
-	//find Element
-	int posOfElem = find(elements, key);
-	Element elementToDelete = retrieve(elements, posOfElem);
-	
+	// find Element
+	int posOfElem = find(liste, key);
+	Element elementToDelete = retrieve(liste, posOfElem);
+
 	// Element ueberbruecken (Zeiger von Nachbarelementen entfernen)
 	Element previous = elementToDelete.getPrevElement();
 	previous.setNextElement(elementToDelete.getNextElement());
 
-	// Element aus array loeschen
-	for (int i = 0; i < elements.length; i++) {
-	    if (elements[i].equals(elementToDelete)) {
-		elements[i] = null;
+	// Element aus memory loeschen
+	Element[] memory = liste.getMemory();
+	for (int i = 0; i < memory.length; i++) {
+	    if (memory[i].equals(elementToDelete)) {
+		memory[i] = null;
 	    }
 	}
+	liste.setMemory(memory);
 
-	return elements;
+	return liste;
     }
 
-    public int find(Element[] elements, Key key) {
+    public int find(Liste liste, Key key) {
 
-	
 	int stepCounter = 0;
-	Element elem = elements[0]; //TODO richtig erstes element finden
-	
+	Element elem = liste.getHead(); // erstes element finden
+
 	// Laufe Liste ab
-	while (elem.getNextElement() != null) {
+	//Bedingung: solange naechstes Elem nicht Tail ist
+	while (!elem.getNextElement().equals(liste.getTail())) {
 	    elem = elem.getNextElement();
 	    stepCounter++;
 	    if (elem.getKey() == key) {
+		break;
+	    } else if(elem.getNextElement().equals(liste.getTail())){
+		stepCounter = -1;
 		break;
 	    }
 	}
 	return stepCounter;
     }
 
-    public Element retrieve(Element[] elements, int pos) {
+    public Element retrieve(Liste liste, int pos) {
 	// ueberpruefen ob pos vorhanden
-	if (pos > listSize || pos < 0)
+	if (pos > liste.size() || pos < 0)
 	    throw new IndexOutOfBoundsException();
 
 	// Durch Liste gehen und zaehlen
-	Element elem = elements[1];// get first Element
+	Element elem = liste.getHead();// get first Element
 	int stepCount = 0;
 	while (pos < stepCount) {
 	    elem = elem.getNextElement();
@@ -95,7 +100,7 @@ public class AufgabeB implements List_Interface {
 	return elem;
     }
 
-    public Element[] concat(Element[] list1, Element[] list2) {
+    public Liste concat(Liste list1, Liste list2) {
 	// TODO Auto-generated method stub
 	return null;
     }
