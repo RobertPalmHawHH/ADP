@@ -6,15 +6,6 @@ import aufgabenblatt1.*;
 
 public class AufgabeA implements List_Interface {
 
-  
-  
-
-
-
-
-
-
-
 
   public boolean concat(List<Element> list2) {
     Element[] list2Array = new Element[list2.size()];
@@ -52,8 +43,8 @@ public class AufgabeA implements List_Interface {
   
   
   
-  public boolean delete(aufgabenblatt1.List list, int pos) {
-    if (pos >= listArray.length || pos < 0) {
+  public boolean delete(Liste list, int pos) {
+    if (posValid(list, pos)) {
       System.out.println("Der angegebene Index liegt nicht innerhalb der Grenzen des Arrays");
       return false;
     }
@@ -68,7 +59,7 @@ public class AufgabeA implements List_Interface {
     return true;
   }
   
-  public int find(aufgabenblatt1.List list, Key key) {
+  public int find(Liste list, Key key) {
     for (int i = 0; i < list.getArray().length; i++) {
       if (list.getArray()[i].getKey() == key) {
         return i;
@@ -79,7 +70,7 @@ public class AufgabeA implements List_Interface {
   }
   
   @Override
-  public aufgabenblatt1.List insert(aufgabenblatt1.List list, Element element, int pos) {
+  public Liste insert(Liste list, Element element, int pos) {
     if (!posValid(list, pos)) {
       System.out.println("Element konnte nicht eingefuegt werden!");
       return list;
@@ -94,7 +85,7 @@ public class AufgabeA implements List_Interface {
     return list;
   }
   
-  public boolean posValid(aufgabenblatt1.List list, int pos) {
+  public boolean posValid(Liste list, int pos) {
     if (pos >= list.getArray().length || pos < 0) {
       System.out.println("Position not in valid range!");
       return false;
@@ -103,21 +94,21 @@ public class AufgabeA implements List_Interface {
     }
   }
   
-  public void increaseArraySize(aufgabenblatt1.List list) {
+  public void increaseArraySize(Liste list) {
     Element[] tempArray = new Element[list.getArray().length * 2];
     System.arraycopy(list.getArray(), 0, tempArray, 0, list.getArray().length);
     list.setArray(tempArray);
   }
 
   @Override
-  public aufgabenblatt1.List delete(aufgabenblatt1.List list, Key key) {
+  public aufgabenblatt1.List delete(Liste list, Key key) {
     // TODO Auto-generated method stub
     return null;
   }
 
 
 
-  public Element retrieve(aufgabenblatt1.List list, int pos) {
+  public Element retrieve(Liste list, int pos) {
     if (!posValid(list, pos)) {
       System.out.println("Null zurueckgegeben!");
       return null;
@@ -126,13 +117,13 @@ public class AufgabeA implements List_Interface {
   }
   
   @Override
-  public Element retriee(aufgabenblatt1.List list, int pos) {
+  public Element retriee(Liste list, int pos) {
     // TODO Auto-generated method stub
     return null;
   }
 
   @Override
-  public aufgabenblatt1.List concat(aufgabenblatt1.List list, Element[] list2) {
+  public aufgabenblatt1.List concat(Liste list, Element[] list2) {
     // TODO Auto-generated method stub
     return null;
   }
