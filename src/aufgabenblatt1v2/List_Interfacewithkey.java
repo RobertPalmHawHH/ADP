@@ -14,7 +14,7 @@ public interface List_Interfacewithkey<K, E> {
     
     public KeyElement2<K, E>[] delete(K key);
     
-    public int find(String key);
+    public int find(K key);
     
     public E retrieve(int pos);
     
