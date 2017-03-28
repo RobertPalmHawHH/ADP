@@ -1,6 +1,5 @@
 package aufgabenblatt1;
 
-import aufgabenblatt1.Element;
 
 public class AufgabeB implements List_Interface {
 
@@ -101,8 +100,11 @@ public class AufgabeB implements List_Interface {
     }
 
     public Liste concat(Liste list1, Liste list2) {
-	// TODO Auto-generated method stub
-	return null;
+	//Alle Elemente von liste2 in liste1 einfuegen
+	for(int i=0; i < list2.size();i++){
+	    insert(list1, retrieve(list2, i), 0);
+	}
+	return list1;
     }
 
     private Element[] increaseArraySize(Element[] elements) {
