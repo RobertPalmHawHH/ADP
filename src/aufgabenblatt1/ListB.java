@@ -1,22 +1,33 @@
 package aufgabenblatt1;
 
 
-public class AufgabeB implements List_Interface {
+public class ListB implements IList {
 
-    public IListBLA insert(IListBLA liste, Element element, int pos) {
+    private Element[] memory;
+    private Element head;
+    private Element tail;
+    private int size;
+    
+    public ListB(){
+	head = new Element();
+	tail = new Element();
+	head.setNextElement(tail);
+	tail.setPrevElement(head);
+    }
+    
+    public IList insert(IList liste, Element element, int pos) {
 
-	Element[] memory = liste.getMemory();
 	// ueberpruefen ob position vorhanden
 	if (pos > memory.length) {
 	    throw new IndexOutOfBoundsException();
 	}
 
 	// Pruefung ob vergroesserung notwendig
-	if (liste.size() == memory.length)
+	if (size == memory.length)
 	    increaseArraySize(memory);
 
-	// Element in Array einfuegen
-	for (int i = 0; i < liste.getMemory().length; i++) {
+	// Element in Memory einfuegen
+	for (int i = 0; i < memory.length; i++) {
 	    if (memory[i] == null) {
 		memory[i] = element;
 		break;
@@ -29,8 +40,6 @@ public class AufgabeB implements List_Interface {
 	// ... und neues zwischen diesem und Vordermann quetschen
 	element.setPrevElement(elemToReplace.getPrevElement());
 	element.setNextElement(elemToReplace);
-
-	liste.setMemory(memory);
 
 	System.out.println("Inserted "+element.getKey().key);
 	return liste;

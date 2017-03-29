@@ -6,7 +6,7 @@ public class Tester {
      * @param args
      */
     public static void main(String[] args) {
-	List_Interface b = new AufgabeB();
+	List_Interface b = new ListB();
 	
 	IListBLA list = new IListBLA();
 	

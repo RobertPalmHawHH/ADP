@@ -4,36 +4,18 @@ public class Element {
 
     private static int elementCounter;
     
-    private Element nextElement;
-    private Element prevElement;
-    
-    private Key key;
+    private String key;
     
     public Element() {
-   	key = new Key("#" + elementCounter);
+   	key = "#" + elementCounter;
    	elementCounter++;
        }
     
-    public Key getKey(){
+    public String getKey(){
 	return key;
     }
 
-    public Element getNextElement() {
-  return nextElement;
-    }
-
-    public void setNextElement(Element nextElement) {
-  this.nextElement = nextElement;
-    }
-
-    public Element getPrevElement() {
-  return prevElement;
-    }
-
-    public void setPrevElement(Element previousElement) {
-  this.prevElement = previousElement;
-    }
-    
+    @Override
     public boolean equals(Object element) {
 	if (element instanceof Element) {
 	    if (((Element) element).key == key) {
