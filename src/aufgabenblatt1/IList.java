@@ -5,16 +5,16 @@ import aufgabenblatt1.Element;
 public interface IList {
 
     
-    public IListBLA insert(IListBLA list, Element element, int pos);
+    public IList insert(IList list, Element element, int pos);
     
-    public IListBLA delete(IListBLA list, int pos);
+    public IList delete(IList list, int pos);
     
-    public IListBLA delete(IListBLA list, Key key);
+    public IList delete(IList list, String key);
     
-    public int find(IListBLA list, Key key);
+    public int find(IList list, String key);
     
-    public Element retrieve(IListBLA list, int pos);
+    public Element retrieve(IList list, int pos);
     
-    public IListBLA concat(IListBLA list1, IListBLA list2);
+    public IList concat(IList list1, IList list2);
     
 }
