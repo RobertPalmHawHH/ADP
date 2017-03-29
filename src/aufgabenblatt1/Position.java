@@ -4,10 +4,7 @@ public class Position {
 
     private Position nextPosition;
     private Position prevPosition;
-    
-    private Element element;
-
-    
+    private Element element;    
     
     public Position getNextPosition() {
         return nextPosition;
