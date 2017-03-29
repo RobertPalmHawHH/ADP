@@ -2,50 +2,55 @@ package aufgabenblatt1;
 
 public class Position {
 
-    private static int elementCounter;
+    private static int elementCounter = 0;
 
     private Position nextPosition;
     private Position prevPosition;
-    private Element element;    
+    private Element element;
     private final int KEY;
-    
+
     public Position() {
-      KEY = elementCounter;
-      elementCounter++;
+	KEY = elementCounter;
+	elementCounter++;
     }
+
+    public Position(int key) {
+	KEY = key;
+    }
+
     public Position getNextPosition() {
-        return nextPosition;
+	return nextPosition;
     }
 
     public void setNextPosition(Position nextPosition) {
-        this.nextPosition = nextPosition;
+	this.nextPosition = nextPosition;
     }
 
     public Position getPrevPosition() {
-        return prevPosition;
+	return prevPosition;
     }
 
     public void setPrevPosition(Position prevPosition) {
-        this.prevPosition = prevPosition;
+	this.prevPosition = prevPosition;
     }
 
-
     public Element getElement() {
-        return element;
+	return element;
     }
 
     public void setElement(Element element) {
-        this.element = element;
+	this.element = element;
     }
+
     public int getKEY() {
-      return KEY;
+	return KEY;
     }
-    
+
     @Override
-    public boolean equals(Object pos){
+    public boolean equals(Object pos) {
 	boolean resu = false;
-	if(pos instanceof Position){
-	    resu = ((Position)pos).KEY == KEY;
+	if (pos instanceof Position) {
+	    resu = ((Position) pos).KEY == KEY;
 	}
 	return resu;
     }

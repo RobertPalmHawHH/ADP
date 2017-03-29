@@ -2,14 +2,13 @@ package aufgabenblatt1;
 
 import java.util.NoSuchElementException;
 
-public class ListB implements IList {
-
-    private Position[] posArray;
+public class ListeC implements IList {
+  
     private Position head;
     private Position tail;
     private int size;
 
-    public ListB() {
+    public ListeC() {
 	head = new Position();
 	tail = new Position();
 	head.setNextPosition(tail);
@@ -18,9 +17,6 @@ public class ListB implements IList {
 
     public boolean insert(Element element, Position posToInsertOn) {
 
-	// Pruefung ob vergroesserung notwendig
-	if (size == posArray.length)
-	    increaseArraySize(posArray);
 
 	// create new Position
 	Position newPosition = new Position();
@@ -48,26 +44,15 @@ public class ListB implements IList {
 	    newPosition.setPrevPosition(head);
 	}
 
-	// Element in Memory einfuegen
-	for (int i = 0; i < posArray.length; i++) {
-	    if (posArray[i] == null) {
-		posArray[i] = newPosition;
-		break;
-	    }
-	}
-
-	return false;
+	return true;
     }
 
     public boolean delete(Position pos) {
 
+	//Position ueberbruecken
 	Position prevPos = pos.getPrevPosition();
 	prevPos.setNextPosition(pos.getNextPosition());
 
-	for (int i = 0; i < posArray.length; i++) {
-	    if (posArray[i].equals(pos))
-		posArray[i] = null;
-	}
 	return true;
     }
 
@@ -99,12 +84,9 @@ public class ListB implements IList {
 	return pos.getElement();
     }
 
-    public boolean concat(IList list2) {
-	// Alle Elemente von liste2 in liste1 einfuegen
-	for (int i = 0; i < list2.size(); i++) {
-	    insert(list1, list2.retrieve(i), 0);
-	}
-	return false;
+    public IList concat(IList list2) {
+	//ALTER DAS IST NICHT MOEGLICH DIE ZU CONCATEN
+	return list2;
     }
 
     private Element[] increaseArraySize(Position[] elements) {
@@ -114,5 +96,4 @@ public class ListB implements IList {
 	System.arraycopy(elements, 0, newArray, 0, elements.length);
 	return newArray;
     }
-
 }
