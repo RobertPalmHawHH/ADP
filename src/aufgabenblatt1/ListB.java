@@ -1,5 +1,7 @@
 package aufgabenblatt1;
 
+import java.util.NoSuchElementException;
+
 public class ListB implements IList {
 
     private Position[] posArray;
@@ -24,23 +26,28 @@ public class ListB implements IList {
 	Position newPosition = new Position();
 	newPosition.setElement(element);
 
-	//find List Position for linking
+	// find List Position for linking
 	Position pos = head;
-	
-	while(!pos.getNextPosition().equals(tail)){
-	    
-	    if(pos.getNextPosition().equals(posToInsertOn)){
+
+	do {
+	    if (pos.getNextPosition().equals(posToInsertOn)) {
 		newPosition.setPrevPosition(pos);
 		pos = pos.getNextPosition();
 		newPosition.setNextPosition(pos);
+		break;
 	    }
 	    pos = pos.getNextPosition();
+
+	} while (!pos.equals(tail));
+
+	// falls kein element gefunden, am anfang einfuegen
+	if (pos.equals(tail)) {
+	    head.getNextPosition().setPrevPosition(newPosition);
+	    newPosition.setNextPosition(head.getNextPosition());
+	    head.setNextPosition(newPosition);
+	    newPosition.setPrevPosition(head);
 	}
 
-	
-	//TODO
-	
-	
 	// Element in Memory einfuegen
 	for (int i = 0; i < posArray.length; i++) {
 	    if (posArray[i] == null) {
@@ -71,17 +78,20 @@ public class ListB implements IList {
 
     public Position find(int key) {
 
-	Position pos = head; // erstes element
-
 	// Laufe Liste ab
 	// Bedingung: solange naechstes Elem nicht Tail ist
+	Position pos = head; // erstes element
+
 	while (!pos.getNextPosition().equals(tail)) {
 	    pos = pos.getNextPosition();
-
-	    if (pos.KEY == key) {
+	    if (pos.getKEY() == key) {
 		break;
 	    }
 	}
+	if (!pos.getNextPosition().equals(tail)) {
+	    throw new NoSuchElementException("Yo digga Element ist nicht da!");
+	}
+	
 	return pos;
     }
 

@@ -15,6 +15,6 @@ public interface IList {
     
     public Element retrieve(Position pos);
     
-    public boolean concat(IList list2);
+    public IList concat(IList list2);
     
 }
