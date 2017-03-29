@@ -2,6 +2,8 @@ package aufgabenblatt1;
 
 public class Position {
 
+    private static int elementCounter;
+
     private Position nextPosition;
     private Position prevPosition;
     private Element element;    

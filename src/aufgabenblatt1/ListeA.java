@@ -9,6 +9,7 @@ public class ListeA implements IList {
   public static final int INIT_ARRAY_SIZE = 16;
   private int size;
   Position[] listArray = new Position[INIT_ARRAY_SIZE];
+  private int zaehler;
   
   
   public boolean concat(List<Element> list2) {
@@ -144,8 +145,8 @@ public class ListeA implements IList {
   }
 
   @Override
-  public Position find(String key) {
-    listArray[0] = key;
+  public Position find(int key) {
+    listArray[0].getElement().getKey() = key;
     for (int i = 0; 
     return null;
   }
