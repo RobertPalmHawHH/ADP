@@ -8,7 +8,7 @@ public class Tester {
     public static void main(String[] args) {
 	List_Interface b = new AufgabeB();
 	
-	IList list = new IList();
+	IListBLA list = new IListBLA();
 	
 	for (int i = 0; i < 500; i++) {
 	    b.insert(list, new Element(), 0);

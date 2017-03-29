@@ -3,7 +3,7 @@ package aufgabenblatt1;
 
 public class AufgabeB implements List_Interface {
 
-    public IList insert(IList liste, Element element, int pos) {
+    public IListBLA insert(IListBLA liste, Element element, int pos) {
 
 	Element[] memory = liste.getMemory();
 	// ueberpruefen ob position vorhanden
@@ -36,14 +36,14 @@ public class AufgabeB implements List_Interface {
 	return liste;
     }
 
-    public IList delete(IList liste, int pos) {
+    public IListBLA delete(IListBLA liste, int pos) {
 
 	// Element ermitteln und dieses loeschen
 	delete(liste, retrieve(liste, pos).getKey());
 	return liste;
     }
 
-    public IList delete(IList liste, Key key) {
+    public IListBLA delete(IListBLA liste, Key key) {
 
 	// find Element
 	int posOfElem = find(liste, key);
@@ -65,7 +65,7 @@ public class AufgabeB implements List_Interface {
 	return liste;
     }
 
-    public int find(IList liste, Key key) {
+    public int find(IListBLA liste, Key key) {
 
 	int stepCounter = 0;
 	Element elem = liste.getHead(); // erstes element finden
@@ -85,7 +85,7 @@ public class AufgabeB implements List_Interface {
 	return stepCounter;
     }
 
-    public Element retrieve(IList liste, int pos) {
+    public Element retrieve(IListBLA liste, int pos) {
 	// ueberpruefen ob pos vorhanden
 	if (pos > liste.size() || pos < 0)
 	    throw new IndexOutOfBoundsException();
@@ -100,7 +100,7 @@ public class AufgabeB implements List_Interface {
 	return elem;
     }
 
-    public IList concat(IList list1, IList list2) {
+    public IListBLA concat(IListBLA list1, IListBLA list2) {
 	//Alle Elemente von liste2 in liste1 einfuegen
 	for(int i=0; i < list2.size();i++){
 	    insert(list1, retrieve(list2, i), 0);

@@ -1,49 +1,20 @@
 package aufgabenblatt1;
 
-public class IList{
-    
-    public static final int INIT_ARRAY_LENGTH = 16;
-    
-    private Element[] memory;
-    private Element head;
-    private Element tail;
-    private int size;
-    
-    public IList(){
-	memory = new Element[INIT_ARRAY_LENGTH];
-	head = new Element();
-	tail = new Element();
-	head.setNextElement(tail);
-	tail.setPrevElement(head);
-	memory[0] = tail;
-	memory[1] = head;
-	size = 0;
-    }
+import aufgabenblatt1.Element;
 
-    public Element[] getMemory() {
-        return memory;
-    }
+public interface IList {
 
-    public void setMemory(Element[] array) {
-        this.memory = array;
-    }
-
-    public Element getHead() {
-        return head;
-    }
-
-    public Element getTail() {
-        return tail;
-    }
     
-    public int size(){
-	return size;
-    }
+    public IListBLA insert(IListBLA list, Element element, int pos);
     
-    public void increaseSize(){
-	size++;
-    }
-    public void decreaseSize(){
-	size--;
-    }
+    public IListBLA delete(IListBLA list, int pos);
+    
+    public IListBLA delete(IListBLA list, Key key);
+    
+    public int find(IListBLA list, Key key);
+    
+    public Element retrieve(IListBLA list, int pos);
+    
+    public IListBLA concat(IListBLA list1, IListBLA list2);
+    
 }
