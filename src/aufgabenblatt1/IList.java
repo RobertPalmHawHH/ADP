@@ -1,6 +1,6 @@
 package aufgabenblatt1;
 
-public class Liste{
+public class IList{
     
     public static final int INIT_ARRAY_LENGTH = 16;
     
@@ -9,7 +9,7 @@ public class Liste{
     private Element tail;
     private int size;
     
-    public Liste(){
+    public IList(){
 	memory = new Element[INIT_ARRAY_LENGTH];
 	head = new Element();
 	tail = new Element();

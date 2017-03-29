@@ -2,19 +2,19 @@ package aufgabenblatt1;
 
 import aufgabenblatt1.Element;
 
-public interface List_Interface {
+public interface IList {
 
     
-    public Liste insert(Liste list, Element element, int pos);
+    public IList insert(IList list, Element element, int pos);
     
-    public Liste delete(Liste list, int pos);
+    public IList delete(IList list, int pos);
     
-    public Liste delete(Liste list, Key key);
+    public IList delete(IList list, Key key);
     
-    public int find(Liste list, Key key);
+    public int find(IList list, Key key);
     
-    public Element retrieve(Liste list, int pos);
+    public Element retrieve(IList list, int pos);
     
-    public Liste concat(Liste list1, Liste list2);
+    public IList concat(IList list1, IList list2);
     
 }

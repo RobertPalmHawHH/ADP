@@ -3,7 +3,7 @@ package aufgabenblatt1;
 
 public class AufgabeB implements List_Interface {
 
-    public Liste insert(Liste liste, Element element, int pos) {
+    public IList insert(IList liste, Element element, int pos) {
 
 	Element[] memory = liste.getMemory();
 	// ueberpruefen ob position vorhanden
@@ -32,17 +32,18 @@ public class AufgabeB implements List_Interface {
 
 	liste.setMemory(memory);
 
+	System.out.println("Inserted "+element.getKey().key);
 	return liste;
     }
 
-    public Liste delete(Liste liste, int pos) {
+    public IList delete(IList liste, int pos) {
 
 	// Element ermitteln und dieses loeschen
 	delete(liste, retrieve(liste, pos).getKey());
 	return liste;
     }
 
-    public Liste delete(Liste liste, Key key) {
+    public IList delete(IList liste, Key key) {
 
 	// find Element
 	int posOfElem = find(liste, key);
@@ -64,7 +65,7 @@ public class AufgabeB implements List_Interface {
 	return liste;
     }
 
-    public int find(Liste liste, Key key) {
+    public int find(IList liste, Key key) {
 
 	int stepCounter = 0;
 	Element elem = liste.getHead(); // erstes element finden
@@ -84,22 +85,22 @@ public class AufgabeB implements List_Interface {
 	return stepCounter;
     }
 
-    public Element retrieve(Liste liste, int pos) {
+    public Element retrieve(IList liste, int pos) {
 	// ueberpruefen ob pos vorhanden
 	if (pos > liste.size() || pos < 0)
 	    throw new IndexOutOfBoundsException();
 
 	// Durch Liste gehen und zaehlen
-	Element elem = liste.getHead();// get first Element
+	Element elem = liste.getTail();// get first Element
 	int stepCount = 0;
-	while (pos <= stepCount) {
+	while (pos < stepCount) {
 	    elem = elem.getNextElement();
 	    stepCount++;
 	}
 	return elem;
     }
 
-    public Liste concat(Liste list1, Liste list2) {
+    public IList concat(IList list1, IList list2) {
 	//Alle Elemente von liste2 in liste1 einfuegen
 	for(int i=0; i < list2.size();i++){
 	    insert(list1, retrieve(list2, i), 0);
