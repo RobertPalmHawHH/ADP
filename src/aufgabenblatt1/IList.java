@@ -9,9 +9,9 @@ public interface IList {
     
     public boolean delete(Position pos);
     
-    public boolean delete(String key);
+    public boolean delete(int key);
     
-    public Position find(String key);
+    public Position find(int key);
     
     public Element retrieve(Position pos);
     

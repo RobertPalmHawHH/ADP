@@ -4,14 +4,14 @@ public class Element {
 
     private static int elementCounter;
     
-    private String key;
+    private int key;
     
     public Element() {
-   	key = "#" + elementCounter;
+   	key = elementCounter;
    	elementCounter++;
        }
     
-    public String getKey(){
+    public int getKey(){
 	return key;
     }
 

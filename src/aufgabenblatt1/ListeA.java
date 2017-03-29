@@ -4,9 +4,13 @@ import java.util.List;
 
 import aufgabenblatt1.*;
 
-public class AufgabeA implements List_Interface {
-
-
+public class ListeA implements IList {
+  
+  public static final int INIT_ARRAY_SIZE = 16;
+  private int size;
+  Position[] listArray = new Position[INIT_ARRAY_SIZE];
+  
+  
   public boolean concat(List<Element> list2) {
     Element[] list2Array = new Element[list2.size()];
     list2.toArray(list2Array);
@@ -68,37 +72,6 @@ public class AufgabeA implements List_Interface {
     System.out.println("Angegebenes Element wurde nicht gefunden. -1 zurueckgegeben");
     return -1;
   }
-  
-  @Override
-  public Liste insert(Liste list, Element element, int pos) {
-    if (!posValid(list, pos)) {
-      System.out.println("Element konnte nicht eingefuegt werden!");
-      return list;
-    }
-    if (list.getArray()[list.getArray().length - 1] != null) {
-      increaseArraySize(list);
-    }
-    for (int i = list.getArray().length - 1; i > pos; i++) {
-      list.getArray()[i] = list.getArray()[i - 1];
-    }
-    list.getArray()[pos] = element;
-    return list;
-  }
-  
-  public boolean posValid(Liste list, int pos) {
-    if (pos >= list.getArray().length || pos < 0) {
-      System.out.println("Position not in valid range!");
-      return false;
-    } else {
-      return true;
-    }
-  }
-  
-  public void increaseArraySize(Liste list) {
-    Element[] tempArray = new Element[list.getArray().length * 2];
-    System.arraycopy(list.getArray(), 0, tempArray, 0, list.getArray().length);
-    list.setArray(tempArray);
-  }
 
   @Override
   public aufgabenblatt1.List delete(Liste list, Key key) {
@@ -126,6 +99,134 @@ public class AufgabeA implements List_Interface {
   public aufgabenblatt1.List concat(Liste list, Element[] list2) {
     // TODO Auto-generated method stub
     return null;
+  }
+
+
+
+
+
+
+
+
+  public void increaseArraySize() {
+    Position[] tempArray = new Position[listArray.length * 2];
+    System.arraycopy(listArray, 0, tempArray, 0, listArray.length);
+    listArray = tempArray;
+  }
+
+//  private boolean posValid(Position pos) {
+//    if (pos >= list.getArray().length || pos < 0) {
+//      System.out.println("Position not in valid range!");
+//      return false;
+//    } else {
+//      return true;
+//    }
+//  }
+  
+  @Override
+  public boolean insert() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+  
+  @Override
+  public boolean insert(Element element, Position pos) {
+    if (listArray[listArray.length - 1] != null) {
+      increaseArraySize();
+    }
+    for (int i = 0; i < size; i++) {
+      if (listArray[i] == pos) {
+        
+      }
+    }
+    listArray[pos] = element;
+    return listArray;
+  }
+
+  @Override
+  public Position find(String key) {
+    listArray[0] = key;
+    for (int i = 0; 
+    return null;
+  }
+
+
+
+
+
+
+
+
+
+
+  @Override
+  public boolean delete(Position pos) {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  @Override
+  public boolean delete(String key) {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  @Override
+  public Element retrieve(Position pos) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  @Override
+  public boolean concat(IList list2) {
+    // TODO Auto-generated method stub
+    return false;
   }
 
   
