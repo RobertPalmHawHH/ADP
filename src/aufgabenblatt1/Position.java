@@ -39,5 +39,14 @@ public class Position {
     public void setElement(Element element) {
 	this.element = element;
     }
+    
+    @Override
+    public boolean equals(Object pos){
+	boolean resu = false;
+	if(pos instanceof Position){
+	    resu = ((Position)pos).KEY == KEY;
+	}
+	return resu;
+    }
 
 }

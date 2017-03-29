@@ -1,123 +1,103 @@
 package aufgabenblatt1;
 
-
 public class ListB implements IList {
 
-    private Element[] memory;
-    private Element head;
-    private Element tail;
+    private Position[] posArray;
+    private Position head;
+    private Position tail;
     private int size;
-    
-    public ListB(){
-	head = new Element();
-	tail = new Element();
-	head.setNextElement(tail);
-	tail.setPrevElement(head);
-    }
-    
-    public IList insert(IList liste, Element element, int pos) {
 
-	// ueberpruefen ob position vorhanden
-	if (pos > memory.length) {
-	    throw new IndexOutOfBoundsException();
-	}
+    public ListB() {
+	head = new Position();
+	tail = new Position();
+	head.setNextPosition(tail);
+	tail.setPrevPosition(head);
+    }
+
+    public boolean insert(Element element, Position posToInsertOn) {
 
 	// Pruefung ob vergroesserung notwendig
-	if (size == memory.length)
-	    increaseArraySize(memory);
+	if (size == posArray.length)
+	    increaseArraySize(posArray);
 
+	// create new Position
+	Position newPosition = new Position();
+	newPosition.setElement(element);
+
+	//find List Position for linking
+	Position pos = head;
+	
+	while(!pos.getNextPosition().equals(tail)){
+	    
+	    if(pos.getNextPosition().equals(posToInsertOn)){
+		newPosition.setPrevPosition(pos);
+		pos = pos.getNextPosition();
+		newPosition.setNextPosition(pos);
+	    }
+	    pos = pos.getNextPosition();
+	}
+
+	
+	//TODO
+	
+	
 	// Element in Memory einfuegen
-	for (int i = 0; i < memory.length; i++) {
-	    if (memory[i] == null) {
-		memory[i] = element;
+	for (int i = 0; i < posArray.length; i++) {
+	    if (posArray[i] == null) {
+		posArray[i] = newPosition;
 		break;
 	    }
 	}
 
-	// Element an der jeweiligen Position holen
-	Element elemToReplace = retrieve(liste, pos);
-
-	// ... und neues zwischen diesem und Vordermann quetschen
-	element.setPrevElement(elemToReplace.getPrevElement());
-	element.setNextElement(elemToReplace);
-
-	System.out.println("Inserted "+element.getKey().key);
-	return liste;
+	return false;
     }
 
-    public IListBLA delete(IListBLA liste, int pos) {
+    public boolean delete(Position pos) {
 
-	// Element ermitteln und dieses loeschen
-	delete(liste, retrieve(liste, pos).getKey());
-	return liste;
-    }
+	Position prevPos = pos.getPrevPosition();
+	prevPos.setNextPosition(pos.getNextPosition());
 
-    public IListBLA delete(IListBLA liste, Key key) {
-
-	// find Element
-	int posOfElem = find(liste, key);
-	Element elementToDelete = retrieve(liste, posOfElem);
-
-	// Element ueberbruecken (Zeiger von Nachbarelementen entfernen)
-	Element previous = elementToDelete.getPrevElement();
-	previous.setNextElement(elementToDelete.getNextElement());
-
-	// Element aus memory loeschen
-	Element[] memory = liste.getMemory();
-	for (int i = 0; i < memory.length; i++) {
-	    if (memory[i].equals(elementToDelete)) {
-		memory[i] = null;
-	    }
+	for (int i = 0; i < posArray.length; i++) {
+	    if (posArray[i].equals(pos))
+		posArray[i] = null;
 	}
-	liste.setMemory(memory);
-
-	return liste;
+	return true;
     }
 
-    public int find(IListBLA liste, Key key) {
+    public boolean delete(int key) {
+	Position posToDelete = find(key);
+	return delete(posToDelete);
+    }
 
-	int stepCounter = 0;
-	Element elem = liste.getHead(); // erstes element finden
+    public Position find(int key) {
+
+	Position pos = head; // erstes element
 
 	// Laufe Liste ab
-	//Bedingung: solange naechstes Elem nicht Tail ist
-	while (!elem.getNextElement().equals(liste.getTail())) {
-	    elem = elem.getNextElement();
-	    stepCounter++;
-	    if (elem.getKey() == key) {
-		break;
-	    } else if(elem.getNextElement().equals(liste.getTail())){
-		stepCounter = -1;
+	// Bedingung: solange naechstes Elem nicht Tail ist
+	while (!pos.getNextPosition().equals(tail)) {
+	    pos = pos.getNextPosition();
+
+	    if (pos.KEY == key) {
 		break;
 	    }
 	}
-	return stepCounter;
+	return pos;
     }
 
-    public Element retrieve(IListBLA liste, int pos) {
-	// ueberpruefen ob pos vorhanden
-	if (pos > liste.size() || pos < 0)
-	    throw new IndexOutOfBoundsException();
+    public Element retrieve(Position pos) {
+	return pos.getElement();
+    }
 
-	// Durch Liste gehen und zaehlen
-	Element elem = liste.getTail();// get first Element
-	int stepCount = 0;
-	while (pos < stepCount) {
-	    elem = elem.getNextElement();
-	    stepCount++;
+    public boolean concat(IList list2) {
+	// Alle Elemente von liste2 in liste1 einfuegen
+	for (int i = 0; i < list2.size(); i++) {
+	    insert(list1, list2.retrieve(i), 0);
 	}
-	return elem;
+	return false;
     }
 
-    public IListBLA concat(IListBLA list1, IListBLA list2) {
-	//Alle Elemente von liste2 in liste1 einfuegen
-	for(int i=0; i < list2.size();i++){
-	    insert(list1, retrieve(list2, i), 0);
-	}
-	return list1;
-    }
-
-    private Element[] increaseArraySize(Element[] elements) {
+    private Element[] increaseArraySize(Position[] elements) {
 	// Array mit doppelter groesse erstellen
 	Element[] newArray = new Element[elements.length * 2];
 	// tiefenkopie machen
