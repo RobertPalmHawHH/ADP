@@ -47,6 +47,8 @@ public class ListeB implements IList {
 	    head.setNextPosition(newPosition);
 	    newPosition.setPrevPosition(head);
 	}
+	
+	size++;
 
 	// Element in Memory einfuegen
 	for (int i = 0; i < posArray.length; i++) {
@@ -65,6 +67,8 @@ public class ListeB implements IList {
 	Position prevPos = pos.getPrevPosition();
 	prevPos.setNextPosition(pos.getNextPosition());
 
+	size--;
+	
 	//Position aus posArray loeschen
 	for (int i = 0; i < posArray.length; i++) {
 	    if (posArray[i].equals(pos))
