@@ -7,7 +7,12 @@ public class Position {
     private Position nextPosition;
     private Position prevPosition;
     private Element element;    
+    private final int KEY;
     
+    public Position() {
+      KEY = elementCounter;
+      elementCounter++;
+    }
     public Position getNextPosition() {
         return nextPosition;
     }
@@ -31,6 +36,9 @@ public class Position {
 
     public void setElement(Element element) {
         this.element = element;
+    }
+    public int getKEY() {
+      return KEY;
     }
 
 }
