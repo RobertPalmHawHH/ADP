@@ -2,26 +2,26 @@ package aufgabenblatt1;
 
 public class Position {
 
-    private Element nextPosition;
-    private Element prevPosition;
+    private Position nextPosition;
+    private Position prevPosition;
     
     private Element element;
 
     
     
-    public Element getNextPosition() {
+    public Position getNextPosition() {
         return nextPosition;
     }
 
-    public void setNextPosition(Element nextPosition) {
+    public void setNextPosition(Position nextPosition) {
         this.nextPosition = nextPosition;
     }
 
-    public Element getPrevPosition() {
+    public Position getPrevPosition() {
         return prevPosition;
     }
 
-    public void setPrevPosition(Element prevPosition) {
+    public void setPrevPosition(Position prevPosition) {
         this.prevPosition = prevPosition;
     }
 
