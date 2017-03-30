@@ -7,10 +7,11 @@ import aufgabenblatt1.*;
 public class ListeA implements IList {
 
   public static final int INIT_ARRAY_SIZE = 16;
-  private int size;
+  private static int size;
   Position[] listArray = new Position[INIT_ARRAY_SIZE];
-  private static int zaehler;
+  private static long zaehler;
   public static int zaehlerFIND;
+  public static long zaehlerDEL;
 
   public IList concat(IList list2) {
     for (int i = 0; i < listArray.length; i++) {
@@ -56,12 +57,12 @@ public class ListeA implements IList {
       zaehler++;
       listArray[size] = new Position();
       listArray[size].setElement(element);
+      size++;
       return true;
     }
     return false;
   }
 
-  @Override
   public Position find(int key) {
     for (int i = 0; i < size; i++) {
       zaehlerFIND++;
@@ -75,10 +76,10 @@ public class ListeA implements IList {
   @Override
   public boolean delete(Position pos) {
     for (int i = 0; i < size - 1; i++) {
-      zaehler++;
+      zaehlerDEL++;
       if (listArray[i] == pos) {
         for (int j = i; j < size - 1; j++) {
-          zaehler++;
+          zaehlerDEL++;
           listArray[j] = listArray[j + 1];
           if (listArray[j + 1] == null) {
             size--;
@@ -114,13 +115,19 @@ public class ListeA implements IList {
 
   public static void main(String args[]) {
     ListeA listeA = new ListeA();
-    for (int i = 0; i < 100; i++) {
-      listeA.insert(new Element(), new Position());
+    Position[] posListeA = new Position[10];
+    for (int i = 0; i < 100000; i++) {
+      posListeA[i] = new Position();
+      listeA.insert(new Element(), posListeA[i]);
       System.out.println(zaehler);
     }
-//    for(int i = 0; i < 100; i++) {
-//    listeA.find(i);
-//    System.out.println(zaehlerFIND);
-//  }
+    System.out.println(" Die groesse!!!!" + size);
+    listeA.zaehlerFIND = 0;
+    for(int i = 0; i < 100000; i++) {
+      int randomZahl = (int) (Math.random() * 100000);
+      System.out.println(randomZahl);
+    listeA.find(randomZahl);
+    System.out.println("Find aufruf: " + listeA.zaehlerFIND);
+  }
   }
 }
