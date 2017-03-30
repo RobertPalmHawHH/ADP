@@ -1,14 +1,17 @@
-//package aufgabenblatt1;
-//
-////import static org.junit.Assert.*;
-//import aufgabenblatt1.*;
-//import org.junit.Test;
-//
-//public class TestAufgabeA {
-//
-////    @Test
-//    public void test() {
-////	("Not yet implemented");
-//    }
-//
-//}
+package aufgabenblatt1;
+
+import static org.junit.Assert.*;
+import aufgabenblatt1.*;
+import org.junit.Test;
+
+public class TestAufgabeA {
+
+    @Test
+    public void testIncreaseArraySize() {
+      ListeA listeA = new ListeA();
+      listeA.increaseArraySize();
+      assertEquals(listA.listArray.length, actual);
+      listeA.
+    }
+
+}

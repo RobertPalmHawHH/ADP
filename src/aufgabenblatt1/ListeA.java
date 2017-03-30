@@ -12,8 +12,10 @@ public class ListeA implements IList {
   private int zaehler;
 
   public boolean concat(IList list2) {
-    Position[] list2Array = new Position[list2.size()];
-    list2.toArray(list2Array);
+    Position[] list2Array = new Position[INIT_ARRAY_SIZE];
+    
+    
+    
     int startPunkt = -1;
     int i = 0;
     while (startPunkt == -1 && i < listArray.length) {
@@ -62,6 +64,7 @@ public class ListeA implements IList {
       if (listArray[i] == insertable) {
         listArray[i] = new Position();
         listArray[i].setElement(element);
+        size++;
         return true;
       }
     }
@@ -85,6 +88,7 @@ public class ListeA implements IList {
         for (int j = i; j < size - 1; j++) {
           listArray[j] = listArray[j + 1];
           if (listArray[j + 1] == null) {
+            size--;
             break;
           }
         }
