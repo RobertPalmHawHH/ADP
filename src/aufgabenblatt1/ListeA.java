@@ -9,7 +9,8 @@ public class ListeA implements IList {
   public static final int INIT_ARRAY_SIZE = 16;
   private int size;
   Position[] listArray = new Position[INIT_ARRAY_SIZE];
-  private int zaehler;
+  private static int zaehler;
+  public static int zaehlerFIND;
 
   public IList concat(IList list2) {
     for (int i = 0; i < listArray.length; i++) {
@@ -52,6 +53,7 @@ public class ListeA implements IList {
         }
       }
     } else {
+      zaehler++;
       listArray[size] = new Position();
       listArray[size].setElement(element);
       return true;
@@ -62,7 +64,7 @@ public class ListeA implements IList {
   @Override
   public Position find(int key) {
     for (int i = 0; i < size; i++) {
-      zaehler++;
+      zaehlerFIND++;
       if (listArray[i].getKEY() == key) {
         return listArray[i];
       }
@@ -97,14 +99,28 @@ public class ListeA implements IList {
   public Element retrieve(Position pos) {
     return pos.getElement();
   }
-  
+
   public int getSize() {
     return size;
   }
+
   public Position[] getListArray() {
     return listArray;
   }
+
   public Position getListArrayIndex(int index) {
     return listArray[index];
+  }
+
+  public static void main(String args[]) {
+    ListeA listeA = new ListeA();
+    for (int i = 0; i < 100; i++) {
+      listeA.insert(new Element(), new Position());
+      System.out.println(zaehler);
+    }
+//    for(int i = 0; i < 100; i++) {
+//    listeA.find(i);
+//    System.out.println(zaehlerFIND);
+//  }
   }
 }

@@ -16,7 +16,7 @@ public class TestAufgabeA {
     }
     
     @Test
-    public void testFind() {
+    public void testInsert() {
       ListeA listeA = new ListeA(); Element element = new Element(); Position pos = new Position();
       Element element2 = new Element();
       pos.setElement(element);
@@ -26,10 +26,11 @@ public class TestAufgabeA {
       assertEquals(listeA.retrieve(pos).getKEY(), element.getKEY());
     }
     @Test
-    public void testInsert() {
-      IList listeA = new ListeA(); Element element = new Element(); Position pos = new Position();
+    public void testFind() {
+      ListeA listeA = new ListeA(); Element element = new Element(); Position pos = new Position();
       pos.setElement(element);
-//      assertEquals();
+      listeA.insert(element, pos);
+//      assertEquals(listeA.get, listeA.find(pos.getKEY()));
     }
 
 }
