@@ -21,9 +21,9 @@ public class TestAufgabeA {
       Element element2 = new Element();
       pos.setElement(element);
       listeA.insert(element, pos);
-      assertEquals(listeA.getListArrayIndex(0).getElement(), pos.getElement());
+      assertEquals(listeA.retrieve(pos).getKEY(), element.getKEY());
       listeA.insert(element2, pos);
-      assertEquals(listeA.getListArrayIndex(0), )
+      assertEquals(listeA.retrieve(pos).getKEY(), element.getKEY());
     }
     @Test
     public void testInsert() {
