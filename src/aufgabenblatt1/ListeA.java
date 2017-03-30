@@ -11,31 +11,12 @@ public class ListeA implements IList {
   Position[] listArray = new Position[INIT_ARRAY_SIZE];
   private int zaehler;
 
-  public boolean concat(IList list2) {
-    Position[] list2Array = new Position[INIT_ARRAY_SIZE];
-    
-    
-    
-    int startPunkt = -1;
-    int i = 0;
-    while (startPunkt == -1 && i < listArray.length) {
-      if (listArray[i] == null) {
-        startPunkt = i;
-        break;
-      }
-      i++;
-      if (i >= listArray.length) {
-        startPunkt = listArray.length;
-        increaseArraySize();
-      }
+  public IList concat(IList list2) {
+    for (int i = 0; i < listArray.length; i++) {
+      zaehler++;
+      list2.insert(listArray[i].getElement(), listArray[i]);
     }
-    while (listArray.length - startPunkt - list2Array.length <= 0) {
-      increaseArraySize();
-    }
-    for (int j = 0; j < list2Array.length; j++) {
-      listArray[j + startPunkt] = list2Array[j];
-    }
-    return true;
+    return list2;
   }
 
   public void increaseArraySize() {
@@ -59,14 +40,21 @@ public class ListeA implements IList {
       increaseArraySize();
     }
     Position insertable = find(pos.getKEY());
-    for (int i = size - 1; i >= 0; i--) {
-      listArray[i] = listArray[i - 1];
-      if (listArray[i] == insertable) {
-        listArray[i] = new Position();
-        listArray[i].setElement(element);
-        size++;
-        return true;
+    if (insertable != null) {
+      for (int i = size - 1; i >= 0; i--) {
+        zaehler++;
+        listArray[i] = listArray[i - 1];
+        if (listArray[i] == insertable) {
+          listArray[i] = new Position();
+          listArray[i].setElement(element);
+          size++;
+          return true;
+        }
       }
+    } else {
+      listArray[size] = new Position();
+      listArray[size].setElement(element);
+      return true;
     }
     return false;
   }
@@ -74,6 +62,7 @@ public class ListeA implements IList {
   @Override
   public Position find(int key) {
     for (int i = 0; i < size; i++) {
+      zaehler++;
       if (listArray[i].getKEY() == key) {
         return listArray[i];
       }
@@ -84,17 +73,19 @@ public class ListeA implements IList {
   @Override
   public boolean delete(Position pos) {
     for (int i = 0; i < size - 1; i++) {
+      zaehler++;
       if (listArray[i] == pos) {
         for (int j = i; j < size - 1; j++) {
+          zaehler++;
           listArray[j] = listArray[j + 1];
           if (listArray[j + 1] == null) {
             size--;
-            break;
+            return true;
           }
         }
       }
     }
-    return true;
+    return false;
   }
 
   public boolean delete(int key) {
@@ -105,5 +96,15 @@ public class ListeA implements IList {
   @Override
   public Element retrieve(Position pos) {
     return pos.getElement();
+  }
+  
+  public int getSize() {
+    return size;
+  }
+  public Position[] getListArray() {
+    return listArray;
+  }
+  public Position getListArrayIndex(int index) {
+    return listArray[index];
   }
 }
