@@ -13,8 +13,8 @@ public class SiebSuche {
       if (a[i] == true) {
         for (int j = 2; i*j < N; j++) {
           a[i*j] = false;
-          System.out.println("Sieb: " + zaehlerSieb);
           zaehlerSieb++;
+          System.out.println("Sieb: " + zaehlerSieb);
         }
       }
     }
