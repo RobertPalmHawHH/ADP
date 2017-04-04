@@ -8,16 +8,17 @@ package aufgabenblatt2;
 
 /**
  * Diese Klasse benutzt das Sieb des Eratosthenes um alle Zahlen bis zu einer
- * Angegebenen Zahl auf Primzahlen zu überprüfen.
+ * Angegebenen Zahl auf Primzahlen zu ï¿½berprï¿½fen.
  * 
  * @author Robert Plam & Leo Peters
  */
 public class SiebSuche {
-  //Zähler zur Aufwandsanalyse
-  private static int zaehlerSieb;
+  //Zï¿½hler zur Aufwandsanalyse
+  public static int zaehlerSieb;
 
   public boolean[] primzahlenSieb(int N) {
-    // Initialisierung
+      zaehlerSieb = 0;
+      // Initialisierung
     boolean[] a = new boolean[N];
     for (int i = 0; i < N; i++) {
       a[i] = true;
@@ -28,7 +29,7 @@ public class SiebSuche {
         for (int j = 2; i * j < N; j++) {
           a[i * j] = false;
           zaehlerSieb++;
-          System.out.println("Sieb: " + zaehlerSieb);
+//          System.out.println("Sieb: " + zaehlerSieb);
         }
       }
     }
