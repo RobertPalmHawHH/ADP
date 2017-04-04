@@ -1,11 +1,24 @@
+/** 
+ * Algorithmen & Datenstrukturen - Pareigis
+ * Aufgabenblatt Nr. 2
+ * 05.04.2017 - Version 1.0
+ * Leo Peters & Robert Palm
+ */
 package aufgabenblatt2;
 
+/**
+ * Diese Klasse prüft bis zu einer angegebenen Zahl alle Zahlen aufsteigend nach
+ * Primzahlen.
+ * 
+ * @author Robert Palm & Leo Peters
+ */
 public class LangsameSuche {
+  // Zaehler zur Aufwandsanalyse
   public static int zaehlerLangsam;
 
   public boolean[] primzahlenLangsam(int N) {
-    boolean a[] = new boolean[N];
     // Initialisierung
+    boolean a[] = new boolean[N];
     for (int i = 0; i < N; i++) {
       a[i] = true;
     }
