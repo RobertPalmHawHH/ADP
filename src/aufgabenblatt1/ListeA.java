@@ -7,33 +7,18 @@ import aufgabenblatt1.*;
 public class ListeA implements IList {
 
   public static final int INIT_ARRAY_SIZE = 16;
-  private int size;
+  private static int size;
   Position[] listArray = new Position[INIT_ARRAY_SIZE];
-  private int zaehler;
+  private static long zaehler;
+  public static int zaehlerFIND;
+  public static long zaehlerDEL;
 
-  public boolean concat(IList list2) {
-    Position[] list2Array = new Position[list2.size()];
-    list2.toArray(list2Array);
-    int startPunkt = -1;
-    int i = 0;
-    while (startPunkt == -1 && i < listArray.length) {
-      if (listArray[i] == null) {
-        startPunkt = i;
-        break;
-      }
-      i++;
-      if (i >= listArray.length) {
-        startPunkt = listArray.length;
-        increaseArraySize();
-      }
+  public IList concat(IList list2) {
+    for (int i = 0; i < listArray.length; i++) {
+      zaehler++;
+      list2.insert(listArray[i].getElement(), listArray[i]);
     }
-    while (listArray.length - startPunkt - list2Array.length <= 0) {
-      increaseArraySize();
-    }
-    for (int j = 0; j < list2Array.length; j++) {
-      listArray[j + startPunkt] = list2Array[j];
-    }
-    return true;
+    return list2;
   }
 
   public void increaseArraySize() {
@@ -57,20 +42,30 @@ public class ListeA implements IList {
       increaseArraySize();
     }
     Position insertable = find(pos.getKEY());
-    for (int i = size - 1; i >= 0; i--) {
-      listArray[i] = listArray[i - 1];
-      if (listArray[i] == insertable) {
-        listArray[i] = new Position();
-        listArray[i].setElement(element);
-        return true;
+    if (insertable != null) {
+      for (int i = size - 1; i >= 0; i--) {
+        zaehler++;
+        listArray[i] = listArray[i - 1];
+        if (listArray[i] == insertable) {
+          listArray[i] = new Position();
+          listArray[i].setElement(element);
+          size++;
+          return true;
+        }
       }
+    } else {
+      zaehler++;
+      listArray[size] = new Position();
+      listArray[size].setElement(element);
+      size++;
+      return true;
     }
     return false;
   }
 
-  @Override
   public Position find(int key) {
     for (int i = 0; i < size; i++) {
+      zaehlerFIND++;
       if (listArray[i].getKEY() == key) {
         return listArray[i];
       }
@@ -81,16 +76,19 @@ public class ListeA implements IList {
   @Override
   public boolean delete(Position pos) {
     for (int i = 0; i < size - 1; i++) {
+      zaehlerDEL++;
       if (listArray[i] == pos) {
         for (int j = i; j < size - 1; j++) {
+          zaehlerDEL++;
           listArray[j] = listArray[j + 1];
           if (listArray[j + 1] == null) {
-            break;
+            size--;
+            return true;
           }
         }
       }
     }
-    return true;
+    return false;
   }
 
   public boolean delete(int key) {
@@ -101,5 +99,35 @@ public class ListeA implements IList {
   @Override
   public Element retrieve(Position pos) {
     return pos.getElement();
+  }
+
+  public int getSize() {
+    return size;
+  }
+
+  public Position[] getListArray() {
+    return listArray;
+  }
+
+  public Position getListArrayIndex(int index) {
+    return listArray[index];
+  }
+
+  public static void main(String args[]) {
+    ListeA listeA = new ListeA();
+    Position[] posListeA = new Position[10];
+    for (int i = 0; i < 100000; i++) {
+      posListeA[i] = new Position();
+      listeA.insert(new Element(), posListeA[i]);
+      System.out.println(zaehler);
+    }
+    System.out.println(" Die groesse!!!!" + size);
+    listeA.zaehlerFIND = 0;
+    for(int i = 0; i < 100000; i++) {
+      int randomZahl = (int) (Math.random() * 100000);
+      System.out.println(randomZahl);
+    listeA.find(randomZahl);
+    System.out.println("Find aufruf: " + listeA.zaehlerFIND);
+  }
   }
 }
