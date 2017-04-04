@@ -12,7 +12,7 @@ public class SchnelleSuche {
     // Berechnung
     for (int i = 3; i < N; i++) {
       for (int j = 2; j <= Math.sqrt(i); j++) {
-        System.out.println("Langsam: " + zaehlerSchnell);
+        System.out.println("Schnell: " + zaehlerSchnell);
         zaehlerSchnell++;
         if ((i % j == 0) && (j != i)) {
           a[i] = false;

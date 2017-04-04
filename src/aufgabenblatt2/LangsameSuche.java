@@ -12,11 +12,11 @@ public class LangsameSuche {
     // Berechnung
     for (int i = 2; i < N; i++) {
       for (int j = 2; j < N; j++) {
+        System.out.println("Langsam: " + zaehlerLangsam);
+        zaehlerLangsam++;
         if ((i % j == 0) && (j != i)) {
           a[i] = false;
         }
-        System.out.println(zaehlerLangsam);
-        zaehlerLangsam++;
       }
     }
     return a;
