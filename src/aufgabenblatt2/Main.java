@@ -15,7 +15,7 @@ public class Main {
     SiebSuche siSuche = new SiebSuche();
     siSuche.primzahlenSieb(50);
     PrimzahlSuche pSuche = new PrimzahlSuche();
-    System.out.println(pSuche.istPrimzahl());
+    System.out.println(pSuche.istPrimzahl(50));
 //    boolean[] a = siSuche.primzahlenSieb(50);
 //    for (int i = 0; i < 50; i++) {
 //      System.out.println(i + "  " + a[i]);
