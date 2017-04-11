@@ -5,26 +5,32 @@
  * Leo Peters & Robert Palm
  */
 package aufgabenblatt2;
+
 /**
- * Diese Klasse Implementiert eine Methode, die für eine angegebene Zahl, ob es eine Primzahl ist.
+ * Diese Klasse Implementiert eine Methode, die fï¿½r eine angegebene Zahl, ob es
+ * eine Primzahl ist.
+ * 
  * @author Robert Palm & Leo Peters
  */
 public class PrimzahlSuche {
-  
-  // Zähler zur Analyse des Aufwands
-  private static int zaehlerPrimzahlSuche;
-  /**
-   * 
-   * @param N, Zahl für welche geprüft wird, ob es eine Primzahl ist.
-   * @return, true wenn es eine Primzahl ist, false wenn nicht.
-   */
-  public boolean istPrimzahl(int N) {
-    for (int i = 2; i <= Math.sqrt(N); i++) {
-      zaehlerPrimzahlSuche++;
-      System.out.println("istPrim: " + zaehlerPrimzahlSuche);
-      if (N % i == 0 && i != N)
-        return false;
+
+    // Zï¿½hler zur Analyse des Aufwands
+    public static int zaehlerPrimzahlSuche;
+
+    /**
+     * 
+     * @param N
+     *            , Zahl fï¿½r welche geprï¿½ft wird, ob es eine Primzahl ist.
+     * @return, true wenn es eine Primzahl ist, false wenn nicht.
+     */
+    public boolean istPrimzahl(int N) {
+	zaehlerPrimzahlSuche = 0;
+	for (int i = 2; i <= Math.sqrt(N); i++) {
+	    zaehlerPrimzahlSuche++;
+//	    System.out.println("istPrim: " + zaehlerPrimzahlSuche);
+	    if (N % i == 0)
+		return false;
+	}
+	return true;
     }
-    return true;
-  }
 }
