@@ -12,10 +12,11 @@ public class ListeA implements IList {
   private static long zaehler;
   public static int zaehlerFIND;
   public static long zaehlerDEL;
+  public static int zaehlerRET;
 
   public IList concat(IList list2) {
-    for (int i = 0; i < listArray.length; i++) {
-      zaehler++;
+    for (int i = 0; i < size; i++) {
+      System.out.println(zaehler++);
       list2.insert(listArray[i].getElement(), listArray[i]);
     }
     return list2;
@@ -65,7 +66,7 @@ public class ListeA implements IList {
 
   public Position find(int key) {
     for (int i = 0; i < size; i++) {
-      zaehlerFIND++;
+      zaehlerDEL++;
       if (listArray[i].getKEY() == key) {
         return listArray[i];
       }
@@ -98,6 +99,8 @@ public class ListeA implements IList {
 
   @Override
   public Element retrieve(Position pos) {
+    zaehlerRET++;
+    System.out.println("RET: " + zaehlerRET);
     return pos.getElement();
   }
 
@@ -115,19 +118,29 @@ public class ListeA implements IList {
 
   public static void main(String args[]) {
     ListeA listeA = new ListeA();
-    Position[] posListeA = new Position[10];
-    for (int i = 0; i < 100000; i++) {
+    IList listeA2 = new ListeA();
+    Position[] posListeA = new Position[100];
+    for (int i = 0; i < 100; i++) {
       posListeA[i] = new Position();
-      listeA.insert(new Element(), posListeA[i]);
+      listeA.insert(new Element(), new Position());
       System.out.println(zaehler);
     }
     System.out.println(" Die groesse!!!!" + size);
-    listeA.zaehlerFIND = 0;
-    for(int i = 0; i < 100000; i++) {
-      int randomZahl = (int) (Math.random() * 100000);
-      System.out.println(randomZahl);
-    listeA.find(randomZahl);
-    System.out.println("Find aufruf: " + listeA.zaehlerFIND);
-  }
+    listeA.zaehlerRET = 0;
+    for (int i = 0; i < 100; i++) {
+    listeA.retrieve(posListeA[(int)(Math.random() * 100)]);
+    }
+//    listeA.concat(listeA2);
+//    for (int i = 0; i < 10; i++) {
+//      listeA.delete(posListeA[(int)(Math.random() * 10)]);
+//      System.out.println(zaehlerDEL);
+//    }
+//    listeA.zaehlerFIND = 0;
+//    for(int i = 0; i < 100000; i++) {
+//      int randomZahl = (int) (Math.random() * 100000);
+//      System.out.println(randomZahl);
+//    listeA.find(randomZahl);
+//    System.out.println("Find aufruf: " + listeA.zaehlerFIND);
+//  }
   }
 }
