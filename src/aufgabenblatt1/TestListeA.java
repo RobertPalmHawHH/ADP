@@ -4,26 +4,32 @@ import static org.junit.Assert.*;
 import aufgabenblatt1.*;
 import org.junit.Test;
 
-public class TestAufgabeA {
+public class TestListeA {
 
     @Test
     public void testIncreaseArraySize() {
       ListeA listeA = new ListeA();
         listeA.increaseArraySize();
-        assertEquals(32, listeA.listArray.length);
+        assertEquals(32, listeA.getListArray().length);
         listeA.increaseArraySize();
-        assertEquals(64, listeA.listArray.length);
+        assertEquals(64, listeA.getListArray().length);
     }
     
     @Test
     public void testInsert() {
+      int testKey = -1;
       ListeA listeA = new ListeA(); Element element = new Element(); Position pos = new Position();
-      Element element2 = new Element();
+//      Element element2 = new Element();
       pos.setElement(element);
       listeA.insert(element, pos);
-      assertEquals(listeA.retrieve(pos).getKEY(), element.getKEY());
-      listeA.insert(element2, pos);
-      assertEquals(listeA.retrieve(pos).getKEY(), element.getKEY());
+      for(int i = 0; i < listeA.getSize(); i++) {
+        if(listeA.getListArrayIndex(i) == pos) {
+          testKey = listeA.getListArrayIndex(i).getKEY();
+        }
+      }
+      assertEquals(testKey, element.getKEY());
+//      listeA.insert(element2, pos);
+//      assertEquals(listeA.retrieve(pos).getKEY(), element.getKEY());
     }
     @Test
     public void testFind() {

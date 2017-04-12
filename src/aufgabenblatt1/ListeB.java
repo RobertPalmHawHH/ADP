@@ -16,6 +16,12 @@ public class ListeB implements IList {
 	tail.setPrevPosition(head);
     }
 
+    public Position[] getPosArray() {
+      return posArray;
+    }
+    public int getSize() {
+      return size;
+    }
     public boolean insert(Element element, Position posToInsertOn) {
 
 	// Pruefung ob vergroesserung notwendig
@@ -114,7 +120,7 @@ public class ListeB implements IList {
 	return list2;
     }
 
-    private Element[] increaseArraySize(Position[] elements) {
+    public Element[] increaseArraySize(Position[] elements) {
 	// Array mit doppelter groesse erstellen
 	Element[] newArray = new Element[elements.length * 2];
 	// tiefenkopie machen

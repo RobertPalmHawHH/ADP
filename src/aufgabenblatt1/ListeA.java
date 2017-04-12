@@ -7,8 +7,8 @@ import aufgabenblatt1.*;
 public class ListeA implements IList {
 
   public static final int INIT_ARRAY_SIZE = 16;
-  private static int size;
-  Position[] listArray = new Position[INIT_ARRAY_SIZE];
+  private static int size = 0;
+  private Position[] listArray = new Position[INIT_ARRAY_SIZE];
   private static long zaehler;
   public static int zaehlerFIND;
   public static long zaehlerDEL;
@@ -118,7 +118,6 @@ public class ListeA implements IList {
 
   public static void main(String args[]) {
     ListeA listeA = new ListeA();
-    IList listeA2 = new ListeA();
     Position[] posListeA = new Position[100];
     for (int i = 0; i < 100; i++) {
       posListeA[i] = new Position();
@@ -126,7 +125,7 @@ public class ListeA implements IList {
       System.out.println(zaehler);
     }
     System.out.println(" Die groesse!!!!" + size);
-    listeA.zaehlerRET = 0;
+    zaehlerRET = 0;
     for (int i = 0; i < 100; i++) {
     listeA.retrieve(posListeA[(int)(Math.random() * 100)]);
     }
