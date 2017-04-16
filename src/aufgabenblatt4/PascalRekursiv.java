@@ -1,20 +1,12 @@
 package aufgabenblatt4;
 
-public class PascalRekursiv {
+public class PascalRekursiv extends AbstractPascal{
 
-    public static void main(String[] args) {
-	PascalRekursiv pascalRek = new PascalRekursiv();
 
-	for (int k = 1; k < 15; k++) {
-	    int[] zeileN = pascalRek.berechneZeile(k);
-	    for (int i : zeileN) {
-		System.out.printf("%d\t", i);
-	    }
-	    System.out.println();
-	}
+    
+    
 
-    }
-
+    @Override
     public int[] berechneZeile(int n) {
 
 	if (n == 1) {
