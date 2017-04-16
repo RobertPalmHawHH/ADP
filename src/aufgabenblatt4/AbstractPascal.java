@@ -11,13 +11,13 @@ public abstract class  AbstractPascal {
  // Main fuer test
     public static void main(String[] args) {
 	
-	AbstractPascal rekursiv = new PascalRekursiv();
+	AbstractPascal rekursiv = new PascalIterativ();
 	AbstractPascal iterativ;
 	AbstractPascal schnell;
 	
 	
-	for (int k = 1; k < 15; k++) {
-	    int[] zeileN = rekursiv.berechneZeile(k);
+	for (int n = 1; n < 15; n++) {
+	    int[] zeileN = rekursiv.berechneZeile(n);
 	    for (int i : zeileN) {
 		System.out.printf("%d\t", i);
 	    }
