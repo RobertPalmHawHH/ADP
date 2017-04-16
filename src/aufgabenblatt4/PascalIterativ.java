@@ -1,18 +1,17 @@
 package aufgabenblatt4;
 
-public class PascalIterativ extends InterfacePascal {
-    
+public class PascalIterativ implements InterfacePascal {
+
     public static int zaehler = 0;
 
-    @Override
-    int[] berechneZeile(int n) {
+    public int[] berechneZeile(int n) {
 
 	int[] zeileAlt = new int[0];
 	int[] zeileNeu;
 
 	for (int i = 1; i <= n; i++) {
 
-	    zeileNeu = new int[zeileAlt.length+1]; 
+	    zeileNeu = new int[zeileAlt.length + 1];
 
 	    // erste und letzte Position im Array sind immer eins
 	    zeileNeu[0] = 1;
@@ -31,8 +30,12 @@ public class PascalIterativ extends InterfacePascal {
 
     }
 
-    @Override
-    int getZaehler() {
+    public int getZaehler() {
 	return zaehler;
+    }
+
+    public void resetZaehler() {
+	zaehler = 0;
+
     }
 }

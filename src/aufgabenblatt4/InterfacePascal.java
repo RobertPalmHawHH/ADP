@@ -8,5 +8,6 @@ public abstract interface  InterfacePascal {
     
     abstract int getZaehler();
     
+    abstract void resetZaehler();
     
 }
