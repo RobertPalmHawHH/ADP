@@ -1,6 +1,8 @@
 package aufgabenblatt4;
 
-public class PascalIterativ extends AbstractPascal {
+public class PascalIterativ extends InterfacePascal {
+    
+    public static int zaehler = 0;
 
     @Override
     int[] berechneZeile(int n) {
@@ -19,6 +21,7 @@ public class PascalIterativ extends AbstractPascal {
 	    // berechne zahlen zwischen der ersten und letzten position.
 	    for (int k = 1; k < i - 1; k++) {
 		zeileNeu[k] = zeileAlt[k] + zeileAlt[k - 1];
+		zaehler++;
 	    }
 
 	    zeileAlt = zeileNeu.clone();
@@ -26,5 +29,10 @@ public class PascalIterativ extends AbstractPascal {
 	}
 	return zeileAlt;
 
+    }
+
+    @Override
+    int getZaehler() {
+	return zaehler;
     }
 }
