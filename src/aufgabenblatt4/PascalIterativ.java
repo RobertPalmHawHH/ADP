@@ -4,14 +4,14 @@ public class PascalIterativ implements InterfacePascal {
 
     public static int zaehler = 0;
 
-    public int[] berechneZeile(int n) {
+    public long[] berechneZeile(int n) {
 
-	int[] zeileAlt = new int[0];
-	int[] zeileNeu;
+	long[] zeileAlt = new long[0];
+	long[] zeileNeu;
 
 	for (int i = 1; i <= n; i++) {
 
-	    zeileNeu = new int[zeileAlt.length + 1];
+	    zeileNeu = new long[zeileAlt.length + 1];
 
 	    // erste und letzte Position im Array sind immer eins
 	    zeileNeu[0] = 1;

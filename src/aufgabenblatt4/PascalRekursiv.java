@@ -4,8 +4,8 @@ public class PascalRekursiv implements InterfacePascal {
 
     private int zaehler = 0;
     
-    public int[] berechneZeile(int zeile) {
-	int[] pascal = new int[zeile];
+    public long[] berechneZeile(int zeile) {
+	long[] pascal = new long[zeile];
 
 	for (int reihe = 0; reihe < zeile; reihe++) {
 	    zaehler++;

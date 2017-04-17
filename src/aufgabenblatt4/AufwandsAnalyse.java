@@ -6,18 +6,18 @@ public class AufwandsAnalyse {
 
 	InterfacePascal pascal;
 	for (int zeile = 1; zeile < 30; zeile++) {
-	    System.out.println(zeile + " ZEILEN : ");
-
-	    // pascal = new BinominalerPascal();
-	    // System.out.print("Binominal");
-	    // aufwandsAnalyse(pascal, zeile);
+	    System.out.println("\n"+zeile + ". ZEILE : \n");
+    
+	     pascal = new PascalBinominal();
+	     System.out.print("Aufwand Binominal ");
+	     aufwandsAnalyse(pascal, zeile);
 
 	    pascal = new PascalIterativ();
-	    System.out.print("Aufwand Iterativ");
+	    System.out.print("Aufwand Iterativ ");
 	    aufwandsAnalyse(pascal, zeile);
 
 	    pascal = new PascalRekursiv();
-	    System.out.print("Aufwand Rekursiv");
+	    System.out.print("Aufwand Rekursiv ");
 	    aufwandsAnalyse(pascal, zeile);
 
 //	    pascal = new PascalRekursiv2();
@@ -29,17 +29,17 @@ public class AufwandsAnalyse {
 
     private static void aufwandsAnalyse(InterfacePascal pascal, int zeile) {
 
-	int[] result = pascal.berechneZeile(zeile);
-
-	System.out.println(" : " + pascal.getZaehler());
+	long[] result = pascal.berechneZeile(zeile);
+	 arrayAusgeben(result);
+	System.out.println("  : " + pascal.getZaehler());
 	pascal.resetZaehler();
-	// arrayAusgeben(result);
+   
     }
 
-    public static void arrayAusgeben(int[] array) {
-	for (int spalte = 0; spalte < array.length; spalte++) {
-	    if (array[spalte] != 0) {
-		System.out.print(array[spalte] + "|");
+    public static void arrayAusgeben(long[] result) {
+	for (int spalte = 0; spalte < result.length; spalte++) {
+	    if (result[spalte] != 0) {
+		System.out.print(result[spalte] + "|");
 	    }
 	}
     }
