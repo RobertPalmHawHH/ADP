@@ -30,7 +30,7 @@ public class AufwandsAnalyse {
     private static void aufwandsAnalyse(InterfacePascal pascal, int zeile) {
 
 	long[] result = pascal.berechneZeile(zeile);
-	 arrayAusgeben(result);
+	 //arrayAusgeben(result);
 	System.out.println("  : " + pascal.getZaehler());
 	pascal.resetZaehler();
    

@@ -10,7 +10,7 @@ public class PascalIterativ implements InterfacePascal {
 	long[] zeileNeu;
 
 	for (int i = 1; i <= n; i++) {
-
+		zaehler++;
 	    zeileNeu = new long[zeileAlt.length + 1];
 
 	    // erste und letzte Position im Array sind immer eins
